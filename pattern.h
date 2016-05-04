@@ -35,7 +35,9 @@
 #include <unistd.h>
 #endif
 
-#define VANITYGEN_VERSION "0.22"
+#define VANITYGEN_VERSION "0.23"
+
+void set_pubkey_buf(char* pubkey);
 
 typedef struct _vg_context_s vg_context_t;
 
@@ -51,10 +53,10 @@ struct _vg_exec_context_s {
 	EC_KEY				*vxc_key;
 	int				vxc_delta;
 	unsigned char			vxc_binres[28];
-	BIGNUM				vxc_bntarg;
-	BIGNUM				vxc_bnbase;
-	BIGNUM				vxc_bntmp;
-	BIGNUM				vxc_bntmp2;
+	BIGNUM				*vxc_bntarg;
+	BIGNUM				*vxc_bnbase;
+	BIGNUM				*vxc_bntmp;
+	BIGNUM				*vxc_bntmp2;
 
 	vg_exec_context_threadfunc_t	vxc_threadfunc;
 	pthread_t			vxc_pthread;
